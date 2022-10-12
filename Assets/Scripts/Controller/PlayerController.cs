@@ -12,14 +12,7 @@ public class PlayerController : CharController
     #region CharController methods
     protected override void Move()
     {
-        /*if (Input.GetAxis("Horizontal") != 1)
-        {
-
-            return;
-        }
-
-        base.TranslateObject(transform.forward);*/
-        Vector3 localMoveVect = Input.GetAxis("Horizontal") * TranslationSpeed * Time.deltaTime * Vector3.forward;
+        Vector3 localMoveVect = Input.GetAxis("Horizontal") * base.TranslationSpeed * Time.deltaTime * Vector3.forward;
         transform.Translate(localMoveVect, Space.Self);
     }
     #endregion
