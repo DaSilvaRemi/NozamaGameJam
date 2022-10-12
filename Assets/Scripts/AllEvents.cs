@@ -71,6 +71,57 @@ public class MainMenuButtonClickedEvent : SDD.Events.Event
 }
 #endregion
 
+#region SpawnerManger Events
+
+public class StartCooldownSpawnEvent : SDD.Events.Event
+{
+}
+
+public class StopEachTimeSpawnEvent : SDD.Events.Event
+{
+}
+
+public class StopEachTimeLinearSpawnEvent : SDD.Events.Event
+{
+}
+
+public class StopTimedSpawnEvent : SDD.Events.Event
+{
+}
+
+public class SpawnEachTimeEvent : SDD.Events.Event
+{
+	public float eSpawnTime { get; set; }
+}
+
+public class SpawnEachTimeLinearEvent : SDD.Events.Event
+{
+	public float eSpawnTime { get; set; }
+}
+
+
+public class SpawnedGameObjectToDestroyEvent : SDD.Events.Event
+{
+	public GameObject eGameObjectToDestroy { get; set; }
+}
+
+public class SpawnNbGOEvent : SDD.Events.Event
+{
+	public int eNbGOToSpawn { get; set; }
+}
+
+public class SpawnGameObjectEvent : SDD.Events.Event
+{
+	public GameObject eGameObjectToSpawn { get; set; }
+}
+
+public class SpawnGameObjectsEvent : SDD.Events.Event
+{
+	public List<GameObject> eGameObjectsToSpawn { get; set; }
+}
+#endregion
+
+
 #region Score Event
 public class ScoreHasBeenEarnedEvent : SDD.Events.Event
 {
