@@ -11,9 +11,9 @@ public class Collectable : ObjectWillEarnThings
     /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision != null && collision.gameObject != null && (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("ThrowableObject")))
+        if (collision != null && collision.gameObject != null && collision.gameObject.CompareTag("Player"))
         {
-            base.OnInteractionWithTheObjectEarnScore(collision.gameObject);
+            base.OnInteractionWithTheObjectEarnStock(collision.gameObject);
             Destroy(this.gameObject);
         }
     }

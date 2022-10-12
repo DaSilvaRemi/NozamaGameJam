@@ -34,6 +34,8 @@ public class GameEndLVLEvent : SDD.Events.Event
 public class GameStatisticsChangedEvent : SDD.Events.Event
 {
 	public int eScore { get; set; }
+	public int eStock { get; set; }
+	public int eNonLivres { get; set; }
 }
 #endregion
 
@@ -88,6 +90,11 @@ public class LevelGameOverEvent : SDD.Events.Event
 
 #region Trigger/Collider events
 public class ObjectWillGainScoreEvent : SDD.Events.Event
+{
+	public GameObject eThisGameObject;
+	public GameObject eOtherGO;
+}
+public class ObjectWillGainStockEvent : SDD.Events.Event
 {
 	public GameObject eThisGameObject;
 	public GameObject eOtherGO;
