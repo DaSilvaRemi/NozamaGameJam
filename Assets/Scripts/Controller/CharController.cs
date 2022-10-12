@@ -13,10 +13,6 @@ public class CharController : MonoBehaviour
     [Tooltip("unit: �/s")]
     [SerializeField] private float m_RotatingSpeed;
 
-    [Header("SFX")]
-    [Tooltip("Audio clip MV3")]
-    [SerializeField] private AudioClip m_CharacterWalkClip;
-
     #region CharController properties
     /// <summary>
     /// The rigidbody
