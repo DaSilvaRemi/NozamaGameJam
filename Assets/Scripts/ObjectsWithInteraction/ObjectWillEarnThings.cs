@@ -27,4 +27,14 @@ public class ObjectWillEarnThings : MonoBehaviour
         this.OnInteractionWithTheObject();
         EventManager.Instance.Raise(new ObjectWillGainScoreEvent() { eThisGameObject = this.gameObject, eOtherGO = gameObject });
     }
+
+    /// <summary>
+    /// OnInteractionWithTheObjectEarnScore we gain score <see cref="ObjectWillGainStockEvent"/> and call <seealso cref="OnInteractionWithTheObject"/>
+    /// </summary>
+    /// <param name="gameObject"></param>
+    protected virtual void OnInteractionWithTheObjectEarnStock(GameObject gameObject)
+    {
+        this.OnInteractionWithTheObject();
+        EventManager.Instance.Raise(new ObjectWillGainStockEvent() { eThisGameObject = this.gameObject, eOtherGO = gameObject });
+    }
 }
