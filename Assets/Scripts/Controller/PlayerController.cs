@@ -5,6 +5,7 @@ using SDD.Events;
 
 public class PlayerController : CharController
 {
+    private bool m_IsOnGround;
     //[Header("Throwable Gameobjects Settings")]
     //[Tooltip("Prefab")]
     //[SerializeField] private GameObject m_ThrowableGOPrefab;
@@ -12,8 +13,12 @@ public class PlayerController : CharController
     #region CharController methods
     protected override void Move()
     {
-        Vector3 localMoveVect = Input.GetAxis("Horizontal") * base.TranslationSpeed * Time.deltaTime * Vector3.forward;
-        transform.Translate(localMoveVect, Space.Self);
+        float horizontalInput = Input.GetAxis("Horizontal");
+
+        if (this.m_IsOnGround)
+        {
+            base.TranslateObject(horizontalInput, transform.forward);
+        }
     }
     #endregion
 
@@ -28,11 +33,18 @@ public class PlayerController : CharController
     }
 
     private void OnCollisionEnter(Collision collision)
-    {        
+    {
+        m_IsOnGround = true;
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EventManager.Instance.Raise(new LevelGameOverEvent());
         }
+        
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        m_IsOnGround = false;
     }
 
     private void FixedUpdate()
