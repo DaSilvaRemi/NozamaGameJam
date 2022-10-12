@@ -14,9 +14,13 @@ public class VictoryHUDManager : PanelHUDManager
 
     [Header("Score and Best Score values txt")]
     [Tooltip("TextMeshPro")]
-    [SerializeField] private TextMeshProUGUI m_ScoreValueText;
+    [SerializeField] private TextMeshProUGUI m_NbColisLivree;
     [Tooltip("TextMeshPro")]
-    [SerializeField] private TextMeshProUGUI m_BestScoreValueText;
+    [SerializeField] private TextMeshProUGUI m_BestNbColisLivree;
+    [Tooltip("TextMeshPro")]
+    [SerializeField] private TextMeshProUGUI m_NbColisNonLivree;
+    [Tooltip("TextMeshPro")]
+    [SerializeField] private TextMeshProUGUI m_BestNbColisNonLivree;
 
     #region VictoryHUDManager listeners
     /// <summary>
@@ -41,19 +45,37 @@ public class VictoryHUDManager : PanelHUDManager
     /// <summary>
     /// Set the text value of the score
     /// </summary>
-    /// <param name="score">The score</param>
-    private void SetScoreValueText(int score)
+    /// <param name="nbColisLivree">The score</param>
+    private void SetNbColisLivreeText(int nbColisLivree)
     {
-        this.m_ScoreValueText.text = score.ToString();
+        this.m_NbColisLivree.text = nbColisLivree.ToString();
     }
 
     /// <summary>
     /// Set the text value of the bestScore
     /// </summary>
     /// <param name="bestScore">The bestScore</param>
-    private void SetBestScoreText(int bestScore)
+    private void SetBestNbColisLivree(int bestNbColisLivree)
     {
-        this.m_BestScoreValueText.text = bestScore.ToString();
+        this.m_BestNbColisLivree.text = bestNbColisLivree.ToString();
+    }
+
+    /// <summary>
+    /// Set the text value of the score
+    /// </summary>
+    /// <param name="nbColisLivree">The score</param>
+    private void SetNbColisNonLivreeText(int nbColisNonLivree)
+    {
+        this.m_NbColisNonLivree.text = nbColisNonLivree.ToString();
+    }
+
+    /// <summary>
+    /// Set the text value of the bestScore
+    /// </summary>
+    /// <param name="bestScore">The bestScore</param>
+    private void SetBestNbColisNonLivree(int bestNbColisNonLivree)
+    {
+        this.m_BestNbColisNonLivree.text = bestNbColisNonLivree.ToString();
     }
 
     #region MonoBehaviour Methods
@@ -66,8 +88,10 @@ public class VictoryHUDManager : PanelHUDManager
     private void Start()
     {
         SaveData save = SaveData.LoadPlayerRefs();
-        this.SetScoreValueText(save.Score);
-        this.SetBestScoreText(save.BestScore);
+        this.SetNbColisLivreeText(save.NbColisLivree);
+        this.SetBestNbColisLivree(save.BestNbColisLivree);
+        this.SetNbColisNonLivreeText(save.NbColisNonLivree);
+        this.SetBestNbColisNonLivree(save.BestNbColisNonLivree);
     }
 
     private void OnEnable()

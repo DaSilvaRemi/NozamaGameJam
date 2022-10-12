@@ -9,9 +9,12 @@ public class SaveData
 {
     private SerializableGame m_SerializableGame;
 
-    public int Score { get => this.m_SerializableGame.score; set => this.m_SerializableGame.score = value; }
+    public int NbColisLivree { get => this.m_SerializableGame.nbColisLivree; set => this.m_SerializableGame.nbColisLivree = value; }
 
-    public int BestScore { get => this.m_SerializableGame.bestScore; set => this.m_SerializableGame.bestScore = value; }
+    public int BestNbColisLivree { get => this.m_SerializableGame.bestNbColisLivree; set => this.m_SerializableGame.bestNbColisLivree = value; }
+
+    public int NbColisNonLivree { get => this.m_SerializableGame.nbColisNonLivree; set => this.m_SerializableGame.nbColisNonLivree = value; }
+    public int BestNbColisNonLivree { get => this.m_SerializableGame.bestColisNonLivree; set => this.m_SerializableGame.bestColisNonLivree = value; }
 
     /**
      * <summary>The default constructor</summary> 
@@ -23,17 +26,20 @@ public class SaveData
     /// <summary>
     /// Save data constructor
     /// </summary>
-    /// <param name="score">The score</param>
-    public SaveData(int score) : this(score, 0)
+    /// <param name="nbColisLivree">The score</param>
+    public SaveData(int nbColisLivree) : this(nbColisLivree, nbColisLivree)
     {
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="score">The score</param>
-    /// <param name="bestScore">The best score</param>
-    public SaveData(int score, int bestScore) : this(new SerializableGame(score, bestScore))
+    public SaveData(int nbColisLivree, int nbColisNonLivree) : this(nbColisLivree, nbColisLivree, nbColisNonLivree)
+    {
+    }
+
+    public SaveData(int nbColisLivree, int bestNbColisLivree, int nbColisNonLivree) : this(nbColisLivree, bestNbColisLivree, nbColisNonLivree, nbColisNonLivree)
+    {
+    }
+
+    public SaveData(int nbColisLivree, int bestNbColisLivree, int nbColisNonLivree, int bestNbColisNonLivree) : this(new SerializableGame(nbColisLivree, bestNbColisLivree, nbColisNonLivree, bestNbColisNonLivree))
     {
     }
 
@@ -55,12 +61,15 @@ public class SaveData
 
         SaveData data = LoadPlayerRefs();
 
-        if (save.BestScore >= data.BestScore)
+        if (save.NbColisLivree >= data.BestNbColisLivree)
         {
-            data.BestScore = save.BestScore;
+            data.BestNbColisLivree = save.BestNbColisLivree;
         }
 
-        data.Score = save.Score;
+        if (save.NbColisNonLivree <= data.BestNbColisNonLivree)
+        {
+            data.BestNbColisNonLivree = save.NbColisNonLivree;
+        }
 
         SaveData.SaveOnPlayerRef(data);
     }
@@ -72,8 +81,10 @@ public class SaveData
      */
     public static void SaveOnPlayerRef(SaveData saveGame)
     {
-        PlayerPrefs.SetInt("score", saveGame.Score);
-        PlayerPrefs.SetInt("bestScore", saveGame.BestScore);
+        PlayerPrefs.SetInt("nbColisLivree", saveGame.NbColisLivree);
+        PlayerPrefs.SetInt("bestNbColisLivree", saveGame.BestNbColisLivree);
+        PlayerPrefs.SetInt("nbColisNonLivree", saveGame.NbColisNonLivree);
+        PlayerPrefs.SetInt("bestNbColisNonLivree", saveGame.BestNbColisNonLivree);
         Debug.Log("Save");
         PlayerPrefs.Save();
         Debug.Log(JsonUtility.ToJson(saveGame.m_SerializableGame));
@@ -84,10 +95,13 @@ public class SaveData
      */
     public static SaveData LoadPlayerRefs()
     {
-        int loadedGameScore = PlayerPrefs.GetInt("score");
-        int loadedGameBestScore = PlayerPrefs.GetInt("bestScore");
+
+        int loadedGameNbColis = PlayerPrefs.GetInt("nbColisLivree");
+        int loadedGameBestNbColis = PlayerPrefs.GetInt("bestNbColisLivree");
+        int loadedGameNbColisNonLivree = PlayerPrefs.GetInt("nbColisNonLivree");
+        int loadedGameBestNbColisNonLivree = PlayerPrefs.GetInt("bestNbColisNonLivree");
         
-        SaveData loadedSave = new SaveData(loadedGameScore, loadedGameBestScore);
+        SaveData loadedSave = new SaveData(loadedGameNbColis, loadedGameBestNbColis, loadedGameNbColisNonLivree, loadedGameBestNbColisNonLivree);
         Debug.Log("Load");
         Debug.Log(JsonUtility.ToJson(loadedSave.m_SerializableGame));
 

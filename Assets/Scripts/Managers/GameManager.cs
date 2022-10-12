@@ -124,7 +124,9 @@ public class GameManager : Manager<GameManager>, IEventHandler
         bool isPlayer = e.eOtherGO.CompareTag("Player");
         if (isPlayer && GameManager.IsPlaying)
         {
-            if(m_CurrentStock == 0) {
+            if(this.m_CurrentStock == 0) {
+                this.m_CurrentColisNonLivres++;
+                e.eThisGameObject.SetActive(false);
                 return;
             }
 
@@ -146,6 +148,10 @@ public class GameManager : Manager<GameManager>, IEventHandler
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="e"></param>
     private void OnContinueGameEvent(ContinueGameEvent e)
     {
         this.PlayGame();
@@ -187,6 +193,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
     private void GameOver()
     {
         this.SetGameState(GameState.GAMEOVER);
+        SaveData.Save(new SaveData(this.m_CurrentScore, this.m_CurrentColisNonLivres));
         this.VictoryGame();
     }
 
