@@ -15,7 +15,7 @@ public class PlayerController : CharController, IEventHandler
     #region CharController methods
     protected override void Move()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
+        float horizontalInput = Input.GetAxis("Right");
         float verticalInput = Input.GetAxis("Vertical");
 
         if (this.m_IsOnGround)
@@ -23,7 +23,7 @@ public class PlayerController : CharController, IEventHandler
             base.TranslateObject(horizontalInput, transform.forward);
             //*
             // Pour redresser le perso s'il tombe -> Quaternion de redressement
-            Quaternion qRotUpright = Quaternion.FromToRotation(transform.up, Vector3.up);
+            /*Quaternion qRotUpright = Quaternion.FromToRotation(transform.up, Vector3.up);
 
             // M?canique de redressement qui fait que le perso rebondit sur une surface
             // exemple : une balle dans la t?te -> un mouvement du perso
@@ -36,7 +36,7 @@ public class PlayerController : CharController, IEventHandler
             // transform.up devrait ?tre remplac? par le up, une fois slightly
             // mais pas bcp de changement dans les vect donc c'est ok
 
-            this.Rigidbody.MoveRotation(qRot * qOrientSlightlyUpright);
+            this.Rigidbody.MoveRotation(qRot * qOrientSlightlyUpright);*/
             //*/
         }
         else
@@ -87,8 +87,8 @@ public class PlayerController : CharController, IEventHandler
 
     {
         this.Move();
-
-        if (this.transform.position.y <= -10.0f)
+        Debug.Log("Rotation x " + this.Rigidbody.rotation.x);
+        if (this.transform.position.y <= -10.0f || (this.m_IsOnGround && this.Rigidbody.rotation.x >= 170.0f))
         {
             EventManager.Instance.Raise(new LevelGameOverEvent());
         }

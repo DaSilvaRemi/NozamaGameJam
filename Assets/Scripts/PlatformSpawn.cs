@@ -45,9 +45,9 @@ public class PlatformSpawn : MonoBehaviour
     private void RandomSpawn()
     {
         GameObject colisPathToSpawn = GetRandomColisPathToSpawn();
-        GameObject piegePathToSpawn = GetRandomColisPathToSpawn();
-        GameObject housePathToSpawn = GetRandomColisPathToSpawn();
-        GameObject transitionPathToSpawn = GetRandomColisPathToSpawn();
+        GameObject piegePathToSpawn = GetRandomPiegePathToSpawn();
+        GameObject housePathToSpawn = GetRandomMaisonPathToSpawn();
+        GameObject transitionPathToSpawn = GetRandomTransitionPathToSpawn();
 
         bool spawnBeforePiege = UnityEngine.Random.Range(0, 2) == 1;
 
