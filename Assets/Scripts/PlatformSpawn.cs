@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlatformSpawn : MonoBehaviour
 {
-    [SerializeField] private GameObject[] m_GameObjectsToSpawn;
+    [SerializeField] private GameObject[] m_ColisPathToSpawn;
+    [SerializeField] private GameObject[] m_PiegePathToSpawn;
+    [SerializeField] private GameObject[] m_MaisonPathToSpawn;
+    [SerializeField] private GameObject[] m_TransitionPathToSpawn;
     [SerializeField] private GameObject m_FirstGameObjectsToSpawn;
     [SerializeField] private Transform m_PlayerTransform;
 
@@ -15,16 +18,54 @@ public class PlatformSpawn : MonoBehaviour
     private Vector3 m_CurrentPosition;
     private Vector3 m_MiddlePosition;
 
-    private GameObject GetRandomObjectToSpawn()
+    private GameObject GetRandomColisPathToSpawn()
     {
-        int gameObjectsIndex = UnityEngine.Random.Range(0, this.m_GameObjectsToSpawn.Length);
-        return Instantiate(this.m_GameObjectsToSpawn[gameObjectsIndex]);
+        int gameObjectsIndex = UnityEngine.Random.Range(0, this.m_ColisPathToSpawn.Length);
+        return Instantiate(this.m_ColisPathToSpawn[gameObjectsIndex]);
     }
 
-    private void Spawn()
+    private GameObject GetRandomPiegePathToSpawn()
     {
-        GameObject go = GetRandomObjectToSpawn();
-        Spawn(go);
+        int gameObjectsIndex = UnityEngine.Random.Range(0, this.m_PiegePathToSpawn.Length);
+        return Instantiate(this.m_PiegePathToSpawn[gameObjectsIndex]);
+    }
+
+    private GameObject GetRandomMaisonPathToSpawn()
+    {
+        int gameObjectsIndex = UnityEngine.Random.Range(0, this.m_MaisonPathToSpawn.Length);
+        return Instantiate(this.m_MaisonPathToSpawn[gameObjectsIndex]);
+    }
+
+    private GameObject GetRandomTransitionPathToSpawn()
+    {
+        int gameObjectsIndex = UnityEngine.Random.Range(0, this.m_TransitionPathToSpawn.Length);
+        return Instantiate(this.m_TransitionPathToSpawn[gameObjectsIndex]);
+    }
+
+    private void RandomSpawn()
+    {
+        GameObject colisPathToSpawn = GetRandomColisPathToSpawn();
+        GameObject piegePathToSpawn = GetRandomColisPathToSpawn();
+        GameObject housePathToSpawn = GetRandomColisPathToSpawn();
+        GameObject transitionPathToSpawn = GetRandomColisPathToSpawn();
+
+        bool spawnBeforePiege = UnityEngine.Random.Range(0, 2) == 1;
+
+        Spawn(colisPathToSpawn);
+
+        if (spawnBeforePiege)
+        {
+            Spawn(transitionPathToSpawn);
+        }
+
+        Spawn(piegePathToSpawn);
+
+        if (!spawnBeforePiege)
+        {
+            Spawn(transitionPathToSpawn);
+        }
+
+        Spawn(housePathToSpawn);
     }
 
     private void Spawn(GameObject go)
@@ -40,7 +81,7 @@ public class PlatformSpawn : MonoBehaviour
     {
         this.m_CurrentPosition = m_StartPosition;
         this.Spawn(Instantiate(this.m_FirstGameObjectsToSpawn));
-        this.Spawn();
+        this.RandomSpawn();
     }
 
     private void FixedUpdate()
@@ -48,10 +89,12 @@ public class PlatformSpawn : MonoBehaviour
         Debug.Log("Distance between player and middle position : " + Vector3.Distance(m_PlayerTransform.position, m_MiddlePosition));
         if (this.m_PlayerTransform.position.z >= this.m_MiddlePosition.z)
         {
-            Destroy(this.m_GameObjectsSpawned[0]);
-            this.m_GameObjectsSpawned.RemoveAt(0);
-            Spawn();
-            //this.m_MiddlePosition = this.m_GameObjectsSpawned[0].transform.position + this.m_OffSetVector;
+            for (int i = 0; i < 4; i++)
+            {
+                Destroy(this.m_GameObjectsSpawned[0]);
+                this.m_GameObjectsSpawned.RemoveAt(0);
+            }
+            RandomSpawn();
         }
         Debug.Log("m_MiddlePosition Position : " + this.m_MiddlePosition.ToString());
     }
