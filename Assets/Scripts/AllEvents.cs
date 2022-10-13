@@ -33,7 +33,7 @@ public class GameEndLVLEvent : SDD.Events.Event
 
 public class GameStatisticsChangedEvent : SDD.Events.Event
 {
-	public int eScore { get; set; }
+	public int eNbColisLivree { get; set; }
 	public int eStock { get; set; }
 	public int eNonLivres { get; set; }
 }

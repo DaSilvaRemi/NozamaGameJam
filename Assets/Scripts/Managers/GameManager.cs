@@ -25,7 +25,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
     /// <summary>
     /// Current Score on the game
     /// </summary>
-    private int m_CurrentScore;
+    private int m_CurrentNbColisLivree;
     private int m_CurrentColisNonLivres;
     private int m_CurrentStock;
 
@@ -47,7 +47,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     #region GameScene Properties
     public bool IsMenuScene { get => this.m_CurrentScene.Equals(GameScene.MENUSCENE); }
-    public bool IsFirstLevelScene { get => this.m_CurrentScene.Equals(GameScene.FIRSTLEVELSCENE); }
+    public bool IsMainScene { get => this.m_CurrentScene.Equals(GameScene.MAINSCENE); }
     public bool IsHelpScene { get => this.m_CurrentScene.Equals(GameScene.HELPSCENE); }
     public bool IsCreditScene { get => this.m_CurrentScene.Equals(GameScene.CREDITSCENE); }
     #endregion
@@ -125,13 +125,13 @@ public class GameManager : Manager<GameManager>, IEventHandler
         if (isPlayer && GameManager.IsPlaying)
         {
             if(this.m_CurrentStock == 0) {
-                this.m_CurrentColisNonLivres++;
+                this.SetNbColisNonLivree(this.m_CurrentColisNonLivres++);
                 e.eThisGameObject.SetActive(false);
                 return;
             }
 
             this.EarnScore(e.eThisGameObject);
-            Debug.Log("Score ++ OMG : " + this.m_CurrentScore);
+            Debug.Log("Score ++ OMG : " + this.m_CurrentNbColisLivree);
 
             e.eThisGameObject.SetActive(false); // Deactivates the ThrowableObject when hit ObjectWillGainScore
         }
@@ -193,7 +193,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
     private void GameOver()
     {
         this.SetGameState(GameState.GAMEOVER);
-        SaveData.Save(new SaveData(this.m_CurrentScore, this.m_CurrentColisNonLivres));
+        SaveData.Save(new SaveData(this.m_CurrentNbColisLivree, this.m_CurrentColisNonLivres));
         this.VictoryGame();
     }
 
@@ -203,7 +203,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
      */
     private void NewGame()
     {
-        this.LoadALevel(GameScene.FIRSTLEVELSCENE);
+        this.LoadALevel(GameScene.MAINSCENE);
     }
 
     /**
@@ -214,7 +214,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
     {
         if (!gameObject) return;
 
-        int totalNewlyGainedScore = this.m_CurrentScore;
+        int totalNewlyGainedScore = this.m_CurrentNbColisLivree;
         IScore[] scores = gameObject.GetComponentsInChildren<IScore>();
 
         for (int i = 0; i < scores.Length; i++)
@@ -222,7 +222,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
             totalNewlyGainedScore += scores[i].Score;
         }
 
-        SetScore(totalNewlyGainedScore);
+        SetNbColisLivree(totalNewlyGainedScore);
         SetStock(m_CurrentStock-1);
     }
     private void EarnStock(GameObject gameObject)
@@ -364,17 +364,23 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     /**
      * <summary>Set the score</summary>
-     * <param name="score">The score</param>
+     * <param name="nbColisLivree">The score</param>
      */
-    private void SetScore(int score)
+    private void SetNbColisLivree(int nbColisLivree)
     {
-        this.m_CurrentScore = score;
-        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eScore = this.m_CurrentScore, eStock = this.m_CurrentStock });
+        this.m_CurrentNbColisLivree = nbColisLivree;
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eNbColisLivree = this.m_CurrentNbColisLivree, eStock = this.m_CurrentStock, eNonLivres = this.m_CurrentColisNonLivres });
     }
     private void SetStock(int stock)
     {
         this.m_CurrentStock = stock;
-        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eScore = this.m_CurrentScore, eStock = this.m_CurrentStock });
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eNbColisLivree = this.m_CurrentNbColisLivree, eStock = this.m_CurrentStock, eNonLivres = this.m_CurrentColisNonLivres });
+    }
+
+    private void SetNbColisNonLivree(int nbColisNonLivree)
+    {
+        this.m_CurrentColisNonLivres = nbColisNonLivree;
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eNbColisLivree = this.m_CurrentNbColisLivree, eStock = this.m_CurrentStock, eNonLivres = this.m_CurrentColisNonLivres });
     }
 
     /**
@@ -390,8 +396,8 @@ public class GameManager : Manager<GameManager>, IEventHandler
             case GameScene.MENUSCENE:
                 SceneManager.LoadScene("MenuScene");
                 break;
-            case GameScene.FIRSTLEVELSCENE:
-                SceneManager.LoadScene("FirstLevelScene");
+            case GameScene.MAINSCENE:
+                SceneManager.LoadScene("MainScene");
                 break;
             case GameScene.HELPSCENE:
                 SceneManager.LoadScene("HelpScene");

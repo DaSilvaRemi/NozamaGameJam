@@ -72,7 +72,7 @@ public class HUDManager : PanelHUDManager, IEventHandler
     /// <param name="gameStatisticsChangedEvent"></param>
     private void OnGameStatisticsChangedEvent(GameStatisticsChangedEvent gameStatisticsChangedEvent)
     {
-        this.SetScoreValueText(gameStatisticsChangedEvent.eScore);
+        this.SetScoreValueText(gameStatisticsChangedEvent.eNbColisLivree);
         this.SetNbEnStockText(gameStatisticsChangedEvent.eStock);
         this.SetHabitantNonLivreText(gameStatisticsChangedEvent.eNonLivres);
     }

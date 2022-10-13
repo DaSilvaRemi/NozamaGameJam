@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using SDD.Events;
 
-public class PlayerController : CharController
+public class PlayerController : CharController, IEventHandler
 {
+    [SerializeField] private int m_NbPlayerLife;
     private bool m_IsOnGround;
+
     //[Header("Throwable Gameobjects Settings")]
     //[Tooltip("Prefab")]
     //[SerializeField] private GameObject m_ThrowableGOPrefab;
@@ -21,6 +23,14 @@ public class PlayerController : CharController
         }
     }
     #endregion
+
+    private void OnGameStatisticsChangedEvent(GameStatisticsChangedEvent e)
+    {
+        if (e.eNonLivres >= this.m_NbPlayerLife)
+        {
+            EventManager.Instance.Raise(new LevelGameOverEvent());
+        }
+    }
 
     #region MonoBehaviour METHODS
 
@@ -50,6 +60,16 @@ public class PlayerController : CharController
     private void FixedUpdate()
     {
         this.Move();
+    }
+
+    public void SubscribeEvents()
+    {
+        EventManager.Instance.AddListener<GameStatisticsChangedEvent>(OnGameStatisticsChangedEvent);
+    }
+
+    public void UnsubscribeEvents()
+    {
+        EventManager.Instance.RemoveListener<GameStatisticsChangedEvent>(OnGameStatisticsChangedEvent);
     }
     #endregion
 }
