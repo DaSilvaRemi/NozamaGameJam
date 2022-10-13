@@ -88,7 +88,7 @@ public class PlayerController : CharController, IEventHandler
     {
         this.Move();
 
-        if (this.transform.position.y <= -3.0f)
+        if (this.transform.position.y <= -10.0f)
         {
             EventManager.Instance.Raise(new LevelGameOverEvent());
         }
