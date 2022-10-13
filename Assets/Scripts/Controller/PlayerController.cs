@@ -46,12 +46,16 @@ public class PlayerController : CharController, IEventHandler
 
     private void OnCollisionEnter(Collision collision)
     {
-        m_IsOnGround = true;
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EventManager.Instance.Raise(new LevelGameOverEvent());
         }
         
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        m_IsOnGround = true;
     }
 
     private void OnCollisionExit(Collision collision)
