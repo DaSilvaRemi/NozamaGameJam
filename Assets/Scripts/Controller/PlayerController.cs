@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using SDD.Events;
 
-public class PlayerController : CharController
+public class PlayerController : CharController, IEventHandler
 {
+    [SerializeField] private int m_NbPlayerLife;
+    private bool m_IsOnGround;
+
     //[Header("Throwable Gameobjects Settings")]
     //[Tooltip("Prefab")]
     //[SerializeField] private GameObject m_ThrowableGOPrefab;
@@ -12,13 +15,24 @@ public class PlayerController : CharController
     #region CharController methods
     protected override void Move()
     {
-        float verticalInput = Input.GetAxis("Vertical");
         float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
 
-        base.TranslateObject(verticalInput, transform.forward);
-        base.RotateObject(horizontalInput);
+        if (this.m_IsOnGround)
+        {
+            base.TranslateObject(horizontalInput, transform.forward);
+            base.RotateObject(verticalInput, -transform.right);
+        }
     }
     #endregion
+
+    private void OnGameStatisticsChangedEvent(GameStatisticsChangedEvent e)
+    {
+        if (e.eNonLivres >= this.m_NbPlayerLife)
+        {
+            EventManager.Instance.Raise(new LevelGameOverEvent());
+        }
+    }
 
     #region MonoBehaviour METHODS
 
@@ -31,16 +45,35 @@ public class PlayerController : CharController
     }
 
     private void OnCollisionEnter(Collision collision)
-    {        
+    {
+        m_IsOnGround = true;
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EventManager.Instance.Raise(new LevelGameOverEvent());
         }
+        
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        m_IsOnGround = false;
     }
 
     private void FixedUpdate()
     {
         this.Move();
+    }
+    #endregion
+
+    #region EventSubscriptions
+    public void SubscribeEvents()
+    {
+        EventManager.Instance.AddListener<GameStatisticsChangedEvent>(OnGameStatisticsChangedEvent);
+    }
+
+    public void UnsubscribeEvents()
+    {
+        EventManager.Instance.RemoveListener<GameStatisticsChangedEvent>(OnGameStatisticsChangedEvent);
     }
     #endregion
 }

@@ -28,7 +28,7 @@ public class Tools
     public enum GameScene
     {
         MENUSCENE = 0, 
-        FIRSTLEVELSCENE,
+        MAINSCENE,
         HELPSCENE, 
         CREDITSCENE,
         VICTORYSCENE
