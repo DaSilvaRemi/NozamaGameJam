@@ -33,8 +33,8 @@ public class BGScroller : MonoBehaviour
         }
         if (player.transform.position.z > clone.transform.position.z)
         {
-            prefab.transform.position = startPos + player.transform.position;
-            clone.transform.position = new Vector3(startPos.x, startPos.y, startPos.z + length) + player.transform.position;
+            prefab.transform.position = new Vector3(startPos.x, startPos.y, startPos.z + +player.transform.position.z);
+            clone.transform.position = new Vector3(startPos.x, startPos.y, startPos.z + length + player.transform.position.z);
         }
         playerPos = player.transform.position;
     }
