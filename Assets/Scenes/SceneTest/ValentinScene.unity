@@ -155,7 +155,7 @@ Transform:
   - {fileID: 2057397124}
   - {fileID: 1761997972}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &516279503
 GameObject:
@@ -187,7 +187,7 @@ Transform:
   m_Children:
   - {fileID: 1864459322}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963078058
 GameObject:
@@ -375,7 +375,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1209209893
 GameObject:
@@ -472,7 +472,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1422458858
 GameObject:
@@ -503,65 +503,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!1001 &1715622992
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8901740009770082716, guid: 422cbb3402b3c9d4bb12304028649998, type: 3}
-      propertyPath: m_Name
-      value: gColisJump
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901740009770082717, guid: 422cbb3402b3c9d4bb12304028649998, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901740009770082717, guid: 422cbb3402b3c9d4bb12304028649998, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901740009770082717, guid: 422cbb3402b3c9d4bb12304028649998, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901740009770082717, guid: 422cbb3402b3c9d4bb12304028649998, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901740009770082717, guid: 422cbb3402b3c9d4bb12304028649998, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901740009770082717, guid: 422cbb3402b3c9d4bb12304028649998, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901740009770082717, guid: 422cbb3402b3c9d4bb12304028649998, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901740009770082717, guid: 422cbb3402b3c9d4bb12304028649998, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901740009770082717, guid: 422cbb3402b3c9d4bb12304028649998, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901740009770082717, guid: 422cbb3402b3c9d4bb12304028649998, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901740009770082717, guid: 422cbb3402b3c9d4bb12304028649998, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 422cbb3402b3c9d4bb12304028649998, type: 3}
 --- !u!1 &1761997971
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,10 +549,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c7cc253edbea4441b2fce8bda40e2db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_GameObjectsToSpawn:
-  - {fileID: 7981114510024389953, guid: 7d13286b61b7b4c569437c16c987a378, type: 3}
-  - {fileID: 8901740009770082716, guid: 17ad8da08dd85844290b849f53dcfaf0, type: 3}
-  - {fileID: 8901740009770082716, guid: 68468ecad5e594e74bea43fc2079e4eb, type: 3}
+  m_ColisPathToSpawn:
+  - {fileID: 0}
+  m_PiegePathToSpawn: []
+  m_MaisonPathToSpawn: []
+  m_TransitionPathToSpawn: []
   m_FirstGameObjectsToSpawn: {fileID: 7981114510024389953, guid: 7d13286b61b7b4c569437c16c987a378, type: 3}
   m_PlayerTransform: {fileID: 978164154}
 --- !u!1001 &1864459321
@@ -827,7 +771,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &2057397122
 GameObject:
