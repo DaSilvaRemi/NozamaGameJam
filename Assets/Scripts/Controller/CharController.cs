@@ -70,8 +70,13 @@ public class CharController : MonoBehaviour
     /// </summary>
     /// <param name="horizontalInput">The horizontal input</param>
     protected virtual void RotateObject(float horizontalInput)
+    {        
+        this.RotateObject(horizontalInput, this.transform.up);
+    }
+
+    protected virtual void RotateObject(float horizontalInput, Vector3 direction)
     {
-        Vector3 targetAngularVelocity = horizontalInput * this.m_RotatingSpeed * this.transform.up;
+        Vector3 targetAngularVelocity = horizontalInput * this.m_RotatingSpeed * direction;
         this.RotateObject(targetAngularVelocity);
     }
 
