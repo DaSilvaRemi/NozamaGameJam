@@ -53,6 +53,7 @@ public class HUDManager : PanelHUDManager, IEventHandler
     public void HandleContinueButton()
     {
         base.HideAllPanels();
+        Debug.Log("HandleContinueButton");
         EventManager.Instance.Raise(new ContinueGameEvent());
     }
 

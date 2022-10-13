@@ -154,6 +154,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
     /// <param name="e"></param>
     private void OnContinueGameEvent(ContinueGameEvent e)
     {
+        Debug.Log("OnContinueGameEvent");
         this.PlayGame();
     }
     #endregion

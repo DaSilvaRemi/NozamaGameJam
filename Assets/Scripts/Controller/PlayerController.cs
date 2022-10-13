@@ -16,10 +16,12 @@ public class PlayerController : CharController, IEventHandler
     protected override void Move()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
 
         if (this.m_IsOnGround)
         {
             base.TranslateObject(horizontalInput, transform.forward);
+            base.RotateObject(verticalInput, -transform.right);
         }
     }
     #endregion
@@ -61,17 +63,9 @@ public class PlayerController : CharController, IEventHandler
     {
         this.Move();
     }
+    #endregion
 
-    private void OnEnable()
-    {
-        this.SubscribeEvents();
-    }
-
-    private void OnDisable()
-    {
-        this.UnsubscribeEvents();
-    }
-
+    #region EventSubscriptions
     public void SubscribeEvents()
     {
         EventManager.Instance.AddListener<GameStatisticsChangedEvent>(OnGameStatisticsChangedEvent);
