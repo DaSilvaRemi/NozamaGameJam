@@ -666,7 +666,7 @@ MonoBehaviour:
   - {fileID: 7981114510024389953, guid: 7d13286b61b7b4c569437c16c987a378, type: 3}
   - {fileID: 8901740009770082716, guid: 17ad8da08dd85844290b849f53dcfaf0, type: 3}
   - {fileID: 8901740009770082716, guid: 68468ecad5e594e74bea43fc2079e4eb, type: 3}
-  m_FirstGameObjectsToSpawn: {fileID: 7981114510024389953, guid: 7d13286b61b7b4c569437c16c987a378, type: 3}
+  m_FirstGameObjectsToSpawn: {fileID: 7981114510024389953, guid: 3966aa45c96e88c47b9de3c20674ba43, type: 3}
   m_PlayerTransform: {fileID: 6617134655178155718}
 --- !u!1 &1431417842
 GameObject:
@@ -807,7 +807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6617134654694443573, guid: eca6a6de3bfe60845aaa18628de33df3, type: 3}
       propertyPath: m_TranslationSpeed
-      value: 30
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eca6a6de3bfe60845aaa18628de33df3, type: 3}
