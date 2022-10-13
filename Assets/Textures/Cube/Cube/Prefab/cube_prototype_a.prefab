@@ -1149,7 +1149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f80ceb3cd6f4f468f181f21a7d1fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ObjectInteractionSfxClip: {fileID: 0}
+  m_ObjectInteractionSfxClip: {fileID: 8300000, guid: 8e338d227ba25b74c94a06a0a771812b, type: 3}
 --- !u!114 &7670237158178905794
 MonoBehaviour:
   m_ObjectHideFlags: 0

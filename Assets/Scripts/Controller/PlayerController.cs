@@ -39,10 +39,7 @@ public class PlayerController : CharController, IEventHandler
             this.Rigidbody.MoveRotation(qRot * qOrientSlightlyUpright);*/
             //*/
         }
-        else
-        {
-            base.RotateObject(verticalInput, -transform.right);
-        }
+        base.RotateObject(verticalInput, -transform.right);
     }
     #endregion
 
@@ -87,9 +84,9 @@ public class PlayerController : CharController, IEventHandler
 
     {
         this.Move();
-        Debug.Log("Rotation x " + this.Rigidbody.rotation.x);
-        if (this.transform.position.y <= -10.0f || (this.m_IsOnGround && this.Rigidbody.rotation.x >= 170.0f))
+        if (this.transform.position.y <= -10.0f)
         {
+            Debug.Log("Tombée dans le vide ! ");
             EventManager.Instance.Raise(new LevelGameOverEvent());
         }
     }
