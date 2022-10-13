@@ -35,16 +35,5 @@ public class MenuManager : MonoBehaviour
     {
         EventManager.Instance.Raise(new ExitButtonClickedEvent());
     }
-
-    /// <summary>
-    /// HandleReplayGameButton call <see cref="HandleCreateNewGameButton"/> when <see cref="GameManager.IsWinning"/> is true or else call <see cref="HandleLoadGameButton"/>
-    /// </summary>
-    public void HandleReplayGameButton()
-    {
-        if (GameManager.IsWinning)
-        {
-            this.HandleCreateNewGameButton();
-        }
-    }
     #endregion
 }

@@ -13,10 +13,6 @@ public class CharController : MonoBehaviour
     [Tooltip("unit: �/s")]
     [SerializeField] private float m_RotatingSpeed;
 
-    [Header("SFX")]
-    [Tooltip("Audio clip MV3")]
-    [SerializeField] private AudioClip m_CharacterWalkClip;
-
     #region CharController properties
     /// <summary>
     /// The rigidbody
@@ -74,8 +70,13 @@ public class CharController : MonoBehaviour
     /// </summary>
     /// <param name="horizontalInput">The horizontal input</param>
     protected virtual void RotateObject(float horizontalInput)
+    {        
+        this.RotateObject(horizontalInput, this.transform.up);
+    }
+
+    protected virtual void RotateObject(float horizontalInput, Vector3 direction)
     {
-        Vector3 targetAngularVelocity = horizontalInput * this.m_RotatingSpeed * this.transform.up;
+        Vector3 targetAngularVelocity = horizontalInput * this.m_RotatingSpeed * direction;
         this.RotateObject(targetAngularVelocity);
     }
 

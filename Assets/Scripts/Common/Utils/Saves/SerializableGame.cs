@@ -7,29 +7,29 @@ using System.Threading.Tasks;
 [Serializable]
 public class SerializableGame
 {
-    public int score;
+    public int nbColisLivree;
 
-    public int bestScore;
+    public int bestNbColisLivree;
+
+    public int nbColisNonLivree;
+
+    public int bestColisNonLivree;
 
     /// <summary>
     /// SerializableGame copy constructor
     /// </summary>
     /// <param name="serializableGame">The serializableGame to copy</param>
-    public SerializableGame(SerializableGame serializableGame): this(serializableGame.score, serializableGame.bestScore)
+    public SerializableGame(SerializableGame serializableGame): this(serializableGame.nbColisLivree, serializableGame.bestNbColisLivree, serializableGame.nbColisNonLivree, serializableGame.bestColisNonLivree)
     {
     }
 
-    /// <summary>
-    /// Default constructor
-    /// </summary>
-    /// <param name="time">The time</param>
-    /// <param name="level">The level</param>
-    /// <param name="bestTime">The best time</param>
-    /// <param name="gameState">The game state</param>
-    public SerializableGame(int score, int bestScore)
+
+    public SerializableGame(int colisLivree, int bestColisLivree, int nbColisNonLivree, int bestColisNonLivree)
     {
-        this.score = score;
-        this.bestScore = bestScore;
+        this.nbColisLivree = colisLivree;
+        this.bestNbColisLivree = bestColisLivree;
+        this.nbColisNonLivree = bestColisLivree;
+        this.bestColisNonLivree = bestColisLivree;
     }
 
     /// <summary>
@@ -38,6 +38,6 @@ public class SerializableGame
     /// <returns>The string form the object</returns>
     public override string ToString()
     {
-        return $"Game Time : Score : {this.score}, Best Score : {this.bestScore}";
+        return $"Game NbColisLivree : {this.nbColisLivree}, BestNbColisLivree : {this.bestNbColisLivree}, NbColisNonLivree : {this.nbColisNonLivree}, BestNbColisNonLivree : {this.bestColisNonLivree}";
     }
 }

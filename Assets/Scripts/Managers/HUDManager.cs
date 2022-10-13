@@ -12,18 +12,36 @@ public class HUDManager : PanelHUDManager, IEventHandler
 
     [Header("HUD TEXT")]
     [Tooltip("TextMeshPro")]
+    [SerializeField] private TextMeshProUGUI m_NbEnStockTxt;
+    [Tooltip("TextMeshPro")]
     [SerializeField] private TextMeshProUGUI m_ScoreValueTxt;
+    [Tooltip("TextMeshPro")]
+    [SerializeField] private TextMeshProUGUI m_HabitantNonLivreTxt;
 
     #region Setters
     /// <summary>
     /// Set score value text
     /// </summary>
     /// <param name="score">The score</param>
-    private void SetScoreValueText(int score)
+    private void SetNbEnStockText(int nbEnStock)
+    {
+        if (this.m_NbEnStockTxt)
+        {
+            this.m_NbEnStockTxt.text = nbEnStock.ToString();
+        }
+    }
+    private void SetScoreValueText(int nbLivres)
     {
         if (this.m_ScoreValueTxt)
         {
-            this.m_ScoreValueTxt.text = score.ToString();
+            this.m_ScoreValueTxt.text = nbLivres.ToString();
+        }
+    }
+    private void SetHabitantNonLivreText(int nbNonLivres)
+    {
+        if (this.m_HabitantNonLivreTxt)
+        {
+            this.m_HabitantNonLivreTxt.text = nbNonLivres.ToString();
         }
     }
     #endregion
@@ -35,6 +53,7 @@ public class HUDManager : PanelHUDManager, IEventHandler
     public void HandleContinueButton()
     {
         base.HideAllPanels();
+        Debug.Log("HandleContinueButton");
         EventManager.Instance.Raise(new ContinueGameEvent());
     }
 
@@ -54,7 +73,10 @@ public class HUDManager : PanelHUDManager, IEventHandler
     /// <param name="gameStatisticsChangedEvent"></param>
     private void OnGameStatisticsChangedEvent(GameStatisticsChangedEvent gameStatisticsChangedEvent)
     {
-        this.SetScoreValueText(gameStatisticsChangedEvent.eScore);
+        // Debug.Log("mon event : " + gameStatisticsChangedEvent.eNonLivres);
+        this.SetScoreValueText(gameStatisticsChangedEvent.eNbColisLivree);
+        this.SetNbEnStockText(gameStatisticsChangedEvent.eStock);
+        this.SetHabitantNonLivreText(gameStatisticsChangedEvent.eNonLivres);
     }
 
     /// <summary>
