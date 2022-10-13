@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SDD.Events;
@@ -15,14 +15,31 @@ public class PlayerController : CharController, IEventHandler
     #region CharController methods
     protected override void Move()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
+        float horizontalInput = Input.GetAxis("Right");
         float verticalInput = Input.GetAxis("Vertical");
 
         if (this.m_IsOnGround)
         {
             base.TranslateObject(horizontalInput, transform.forward);
-            base.RotateObject(verticalInput, -transform.right);
+            //*
+            // Pour redresser le perso s'il tombe -> Quaternion de redressement
+            /*Quaternion qRotUpright = Quaternion.FromToRotation(transform.up, Vector3.up);
+
+            // M?canique de redressement qui fait que le perso rebondit sur une surface
+            // exemple : une balle dans la t?te -> un mouvement du perso
+            Quaternion qOrientSlightlyUpright = Quaternion.Slerp(transform.rotation, qRotUpright * transform.rotation, Time.fixedDeltaTime * 100);
+            // -> ? chaque frame, le perso se redresse de 8% par frame (2% * 4)
+
+            float deltaAngle = horizontalInput * 100 * this.RotatingSpeed * Time.fixedDeltaTime;
+
+            Quaternion qRot = Quaternion.AngleAxis(deltaAngle, transform.right);
+            // transform.up devrait ?tre remplac? par le up, une fois slightly
+            // mais pas bcp de changement dans les vect donc c'est ok
+
+            this.Rigidbody.MoveRotation(qRot * qOrientSlightlyUpright);*/
+            //*/
         }
+        base.RotateObject(verticalInput, -transform.right);
     }
     #endregion
 
@@ -46,12 +63,16 @@ public class PlayerController : CharController, IEventHandler
 
     private void OnCollisionEnter(Collision collision)
     {
-        m_IsOnGround = true;
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EventManager.Instance.Raise(new LevelGameOverEvent());
         }
         
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        m_IsOnGround = true;
     }
 
     private void OnCollisionExit(Collision collision)
@@ -60,8 +81,14 @@ public class PlayerController : CharController, IEventHandler
     }
 
     private void FixedUpdate()
+
     {
         this.Move();
+        if (this.transform.position.y <= -10.0f)
+        {
+            Debug.Log("Tombée dans le vide ! ");
+            EventManager.Instance.Raise(new LevelGameOverEvent());
+        }
     }
     #endregion
 
