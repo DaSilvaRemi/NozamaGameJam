@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1017,8 +1017,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_WinPanel: {fileID: 1018102955}
   m_GameOverPanel: {fileID: 964622904}
-  m_ScoreValueText: {fileID: 2109646577}
-  m_BestScoreValueText: {fileID: 99468103}
+  m_NbColisLivree: {fileID: 0}
+  m_BestNbColisLivree: {fileID: 0}
+  m_NbColisNonLivree: {fileID: 0}
+  m_BestNbColisNonLivree: {fileID: 0}
 --- !u!1 &741597487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1235,7 +1237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2591967071884560554, guid: e29f74fbb80a23e429690ee49c82a3d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HandleReplayGameButton
+      value: HandleCreateNewGameButton
       objectReference: {fileID: 0}
     - target: {fileID: 2591967071884560554, guid: e29f74fbb80a23e429690ee49c82a3d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName

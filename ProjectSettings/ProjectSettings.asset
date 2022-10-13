@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: Nozama
   productName: Scoutama_Nozama_DaSilvaBailleulNorPham_GameJam
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -39,7 +39,13 @@ PlayerSettings:
     y: 0
     width: 1
     height: 1
-  m_SplashScreenLogos: []
+  m_SplashScreenLogos:
+  - logo: {fileID: 21300000, guid: 7d4c8dd251fbd354b91f5a1129610721, type: 3}
+    duration: 2
+  - logo: {fileID: 21300000, guid: e75af318a623b92439febb5e5452b95b, type: 3}
+    duration: 2
+  - logo: {fileID: 21300000, guid: e9a6146b970ed204e9b23cbca1f764a3, type: 3}
+    duration: 2
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1920
@@ -154,7 +160,8 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Standalone: com.Nozama.Scoutama-Nozama-DaSilvaBailleulNorPham-GameJam
   buildNumber:
     Standalone: 0
     iPhone: 0
