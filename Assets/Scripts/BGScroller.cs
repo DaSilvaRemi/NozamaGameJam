@@ -6,6 +6,7 @@ public class BGScroller : MonoBehaviour
 {
     public float scrollSpeed;
     public GameObject prefab;
+    public GameObject player;
 
     private float length;
     private Vector3 startPos;
@@ -14,21 +15,21 @@ public class BGScroller : MonoBehaviour
 
     void Awake()
     {
-        length = GetComponent<BoxCollider2D>().bounds.size.x;
+        length = GetComponent<Collider>().bounds.size.z;
         startPos = transform.position;
         startRot = transform.rotation;
-        clone = Instantiate(prefab, new Vector3(startPos.x + length, startPos.y, startPos.z), startRot);
+        clone = Instantiate(prefab, new Vector3(startPos.x, startPos.y, startPos.z + length), startRot);
         clone.transform.localScale = transform.localScale;
     }
 
     void Update()
     {
-        prefab.transform.position += Vector3.left * Time.deltaTime * scrollSpeed;
-        clone.transform.position += Vector3.left * Time.deltaTime * scrollSpeed;
-        if (clone.transform.position.x <= startPos.x)
+        prefab.transform.position += Vector3.back * Time.deltaTime * scrollSpeed;
+        clone.transform.position += Vector3.back * Time.deltaTime * scrollSpeed;
+        if (clone.transform.position.z <= startPos.z)
         {
             prefab.transform.position = startPos;
-            clone.transform.position = new Vector3(startPos.x + length, startPos.y, startPos.z);
+            clone.transform.position = new Vector3(startPos.x, startPos.y, startPos.z + length);
         }
     }
 }
