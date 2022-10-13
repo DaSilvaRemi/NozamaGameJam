@@ -272,7 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TranslationSpeed: 5
   m_JumpSpeed: 0
-  m_RotatingSpeed: 5
+  m_RotatingSpeed: 2
   m_NbPlayerLife: 1
 --- !u!54 &590310641
 Rigidbody:

@@ -21,6 +21,9 @@ public class PlayerController : CharController, IEventHandler
         if (this.m_IsOnGround)
         {
             base.TranslateObject(horizontalInput, transform.forward);
+            
+        }else
+        {
             base.RotateObject(verticalInput, -transform.right);
         }
     }
