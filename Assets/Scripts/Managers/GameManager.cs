@@ -25,8 +25,8 @@ public class GameManager : Manager<GameManager>, IEventHandler
     /// <summary>
     /// Current Score on the game
     /// </summary>
-    private int m_CurrentNbColisLivree;
-    private int m_CurrentColisNonLivres;
+    private int m_CurrentNbColisLivres;
+    private int m_CurrentNbColisNonLivres;
     private int m_CurrentStock;
 
     #region GameState Properties
@@ -125,13 +125,13 @@ public class GameManager : Manager<GameManager>, IEventHandler
         if (isPlayer && GameManager.IsPlaying)
         {
             if(this.m_CurrentStock == 0) {
-                this.SetNbColisNonLivree(this.m_CurrentColisNonLivres++);
+                this.SetNbColisNonLivres(this.m_CurrentNbColisNonLivres + 1);
                 e.eThisGameObject.SetActive(false);
                 return;
             }
 
             this.EarnScore(e.eThisGameObject);
-            Debug.Log("Score ++ OMG : " + this.m_CurrentNbColisLivree);
+            // Debug.Log("Score ++ OMG : " + this.m_CurrentNbColisLivres);
 
             e.eThisGameObject.SetActive(false); // Deactivates the ThrowableObject when hit ObjectWillGainScore
         }
@@ -193,7 +193,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
     private void GameOver()
     {
         this.SetGameState(GameState.GAMEOVER);
-        SaveData.Save(new SaveData(this.m_CurrentNbColisLivree, this.m_CurrentColisNonLivres));
+        SaveData.Save(new SaveData(this.m_CurrentNbColisLivres, this.m_CurrentNbColisNonLivres));
         this.VictoryGame();
     }
 
@@ -214,7 +214,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
     {
         if (!gameObject) return;
 
-        int totalNewlyGainedScore = this.m_CurrentNbColisLivree;
+        int totalNewlyGainedScore = this.m_CurrentNbColisLivres;
         IScore[] scores = gameObject.GetComponentsInChildren<IScore>();
 
         for (int i = 0; i < scores.Length; i++)
@@ -368,19 +368,21 @@ public class GameManager : Manager<GameManager>, IEventHandler
      */
     private void SetNbColisLivree(int nbColisLivree)
     {
-        this.m_CurrentNbColisLivree = nbColisLivree;
-        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eNbColisLivree = this.m_CurrentNbColisLivree, eStock = this.m_CurrentStock, eNonLivres = this.m_CurrentColisNonLivres });
+        this.m_CurrentNbColisLivres = nbColisLivree;
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eNbColisLivree = this.m_CurrentNbColisLivres, eStock = this.m_CurrentStock, eNonLivres = this.m_CurrentNbColisNonLivres });
     }
     private void SetStock(int stock)
     {
         this.m_CurrentStock = stock;
-        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eNbColisLivree = this.m_CurrentNbColisLivree, eStock = this.m_CurrentStock, eNonLivres = this.m_CurrentColisNonLivres });
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eNbColisLivree = this.m_CurrentNbColisLivres, eStock = this.m_CurrentStock, eNonLivres = this.m_CurrentNbColisNonLivres });
     }
 
-    private void SetNbColisNonLivree(int nbColisNonLivree)
+    private void SetNbColisNonLivres(int nbColisNonLivree)
     {
-        this.m_CurrentColisNonLivres = nbColisNonLivree;
-        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eNbColisLivree = this.m_CurrentNbColisLivree, eStock = this.m_CurrentStock, eNonLivres = this.m_CurrentColisNonLivres });
+        // Debug.Log("(avant) this.m_CurrentNbColisNonLivres : " + this.m_CurrentNbColisNonLivres);
+        this.m_CurrentNbColisNonLivres = nbColisNonLivree;
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eNbColisLivree = this.m_CurrentNbColisLivres, eStock = this.m_CurrentStock, eNonLivres = this.m_CurrentNbColisNonLivres });
+        // Debug.Log("(après) this.m_CurrentNbColisNonLivres : " + this.m_CurrentNbColisNonLivres);
     }
 
     /**

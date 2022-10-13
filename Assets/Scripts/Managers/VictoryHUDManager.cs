@@ -64,7 +64,7 @@ public class VictoryHUDManager : PanelHUDManager
     /// Set the text value of the score
     /// </summary>
     /// <param name="nbColisLivree">The score</param>
-    private void SetNbColisNonLivreeText(int nbColisNonLivree)
+    private void SetNbColisNonLivresText(int nbColisNonLivree)
     {
         this.m_NbColisNonLivree.text = nbColisNonLivree.ToString();
     }
@@ -90,7 +90,7 @@ public class VictoryHUDManager : PanelHUDManager
         SaveData save = SaveData.LoadPlayerRefs();
         this.SetNbColisLivreeText(save.NbColisLivree);
         this.SetBestNbColisLivree(save.BestNbColisLivree);
-        this.SetNbColisNonLivreeText(save.NbColisNonLivree);
+        this.SetNbColisNonLivresText(save.NbColisNonLivree);
         this.SetBestNbColisNonLivree(save.BestNbColisNonLivree);
     }
 

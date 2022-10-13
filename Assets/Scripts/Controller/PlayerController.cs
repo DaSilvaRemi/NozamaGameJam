@@ -62,6 +62,16 @@ public class PlayerController : CharController, IEventHandler
         this.Move();
     }
 
+    private void OnEnable()
+    {
+        this.SubscribeEvents();
+    }
+
+    private void OnDisable()
+    {
+        this.UnsubscribeEvents();
+    }
+
     public void SubscribeEvents()
     {
         EventManager.Instance.AddListener<GameStatisticsChangedEvent>(OnGameStatisticsChangedEvent);

@@ -72,6 +72,7 @@ public class HUDManager : PanelHUDManager, IEventHandler
     /// <param name="gameStatisticsChangedEvent"></param>
     private void OnGameStatisticsChangedEvent(GameStatisticsChangedEvent gameStatisticsChangedEvent)
     {
+        // Debug.Log("mon event : " + gameStatisticsChangedEvent.eNonLivres);
         this.SetScoreValueText(gameStatisticsChangedEvent.eNbColisLivree);
         this.SetNbEnStockText(gameStatisticsChangedEvent.eStock);
         this.SetHabitantNonLivreText(gameStatisticsChangedEvent.eNonLivres);

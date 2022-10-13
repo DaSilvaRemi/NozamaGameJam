@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1017,10 +1017,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_WinPanel: {fileID: 1018102955}
   m_GameOverPanel: {fileID: 964622904}
-  m_NbColisLivree: {fileID: 0}
-  m_BestNbColisLivree: {fileID: 0}
-  m_NbColisNonLivree: {fileID: 0}
-  m_BestNbColisNonLivree: {fileID: 0}
+  m_NbColisLivree: {fileID: 2041182045}
+  m_BestNbColisLivree: {fileID: 1955163653}
+  m_NbColisNonLivree: {fileID: 2109646577}
+  m_BestNbColisNonLivree: {fileID: 99468103}
 --- !u!1 &741597487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1993,7 +1993,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1740335597}
   m_Layer: 5
-  m_Name: NbColisNonLivresContainer
+  m_Name: BestColisLivresContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
