@@ -84,8 +84,14 @@ public class PlayerController : CharController, IEventHandler
     }
 
     private void FixedUpdate()
+
     {
         this.Move();
+
+        if (this.transform.position.y <= -3.0f)
+        {
+            EventManager.Instance.Raise(new LevelGameOverEvent());
+        }
     }
     #endregion
 
