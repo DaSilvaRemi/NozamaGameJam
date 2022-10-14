@@ -193,6 +193,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
      */
     private void GameOver()
     {
+        Debug.Log("Game Over");
         this.SetGameState(GameState.GAMEOVER);
         SaveData.Save(new SaveData(this.m_CurrentNbColisLivres, this.m_CurrentNbColisNonLivres));
         this.VictoryGame();
@@ -380,10 +381,10 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     private void SetNbColisNonLivres(int nbColisNonLivree)
     {
-        // Debug.Log("(avant) this.m_CurrentNbColisNonLivres : " + this.m_CurrentNbColisNonLivres);
+        Debug.Log("(avant) this.m_CurrentNbColisNonLivres : " + this.m_CurrentNbColisNonLivres);
         this.m_CurrentNbColisNonLivres = nbColisNonLivree;
         EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eNbColisLivree = this.m_CurrentNbColisLivres, eStock = this.m_CurrentStock, eNonLivres = this.m_CurrentNbColisNonLivres });
-        // Debug.Log("(après) this.m_CurrentNbColisNonLivres : " + this.m_CurrentNbColisNonLivres);
+        Debug.Log("(après) this.m_CurrentNbColisNonLivres : " + this.m_CurrentNbColisNonLivres);
     }
 
     /**
