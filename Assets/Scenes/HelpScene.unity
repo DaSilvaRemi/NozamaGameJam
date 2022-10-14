@@ -451,7 +451,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Tapper un drone ou Tomber dans le vide
+  m_text: 'Taper un drone ou tomber dans le vide
 
 '
   m_isRightToLeft: 0
@@ -1732,7 +1732,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3229496672785525617, guid: 2a968a04fb5795d41afdabde0fcb71b1, type: 3}
       propertyPath: m_text
-      value: "Move : ZQSD/ArrowS Key \n"
+      value: "Move : ZQSD/Arrow Keys \n"
       objectReference: {fileID: 0}
     - target: {fileID: 3229496673168464587, guid: 2a968a04fb5795d41afdabde0fcb71b1, type: 3}
       propertyPath: m_Pivot.x
