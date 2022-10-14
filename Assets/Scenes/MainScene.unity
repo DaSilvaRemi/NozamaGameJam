@@ -1111,7 +1111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CurrentScene: 1
-  m_IsDebugMode: 1
+  m_IsDebugMode: 0
 --- !u!1 &1440017847
 GameObject:
   m_ObjectHideFlags: 0
