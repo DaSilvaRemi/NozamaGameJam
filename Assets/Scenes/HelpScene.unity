@@ -1730,6 +1730,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 910381139}
     m_Modifications:
+    - target: {fileID: 3229496672785525617, guid: 2a968a04fb5795d41afdabde0fcb71b1, type: 3}
+      propertyPath: m_text
+      value: "Move : ZQSD/ArrowS Key \n"
+      objectReference: {fileID: 0}
     - target: {fileID: 3229496673168464587, guid: 2a968a04fb5795d41afdabde0fcb71b1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
