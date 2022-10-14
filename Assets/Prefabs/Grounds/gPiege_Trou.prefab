@@ -1639,6 +1639,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8901740009770082717}
     m_Modifications:
+    - target: {fileID: 2174913123267934526, guid: e04584d537311af46b9871c80bec9484, type: 3}
+      propertyPath: m_Size.y
+      value: 0.46775687
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174913123267934526, guid: e04584d537311af46b9871c80bec9484, type: 3}
+      propertyPath: m_Size.z
+      value: 0.57653713
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174913123267934526, guid: e04584d537311af46b9871c80bec9484, type: 3}
+      propertyPath: m_Center.y
+      value: 0.000080525875
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174913123267934526, guid: e04584d537311af46b9871c80bec9484, type: 3}
+      propertyPath: m_Center.z
+      value: -0.0001616478
+      objectReference: {fileID: 0}
     - target: {fileID: 3793397091287675490, guid: e04584d537311af46b9871c80bec9484, type: 3}
       propertyPath: m_Name
       value: DronePiegeTrou
@@ -1648,16 +1664,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5396789528582494987, guid: e04584d537311af46b9871c80bec9484, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396789528582494987, guid: e04584d537311af46b9871c80bec9484, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396789528582494987, guid: e04584d537311af46b9871c80bec9484, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396789528582494987, guid: e04584d537311af46b9871c80bec9484, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5396789528582494987, guid: e04584d537311af46b9871c80bec9484, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.75
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5396789528582494987, guid: e04584d537311af46b9871c80bec9484, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.5
+      value: 18.52
       objectReference: {fileID: 0}
     - target: {fileID: 5396789528582494987, guid: e04584d537311af46b9871c80bec9484, type: 3}
       propertyPath: m_LocalRotation.w
