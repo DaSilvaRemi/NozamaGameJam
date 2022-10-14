@@ -71,6 +71,9 @@ public class SaveData
             data.BestNbColisNonLivree = save.NbColisNonLivree;
         }
 
+        save.NbColisLivree = data.NbColisLivree;
+        save.NbColisNonLivree = data.NbColisNonLivree;
+
         SaveData.SaveOnPlayerRef(data);
     }
 
