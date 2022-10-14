@@ -63,7 +63,7 @@ public class SaveData
 
         if (save.NbColisLivree >= data.BestNbColisLivree)
         {
-            data.BestNbColisLivree = save.BestNbColisLivree;
+            data.BestNbColisLivree = save.NbColisLivree;
         }
 
         if (save.NbColisNonLivree <= data.BestNbColisNonLivree)
