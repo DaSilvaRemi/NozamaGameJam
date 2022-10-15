@@ -1,6 +1,6 @@
  # Scoutama Gamejam ESIEE-ESIPE 2022 Project
  
- A 2.5D platform racing game created during a Gamejam with ESIEE PARIS and ESIPE schools
+ A 2.5D platform racing game created during a Gamejam with ESIEE PARIS and ESIPE schools. The main goals is to drive a Nozama delivery robot thaht deliver some clients in a world with drones.
  
  # Authors
  - Rémi Da Silva
@@ -10,16 +10,16 @@
   
 # Game Instructions
 
-Contrôles
+Controls
 
-- D / Right Arrow / RT : Avancer
-- A / Up Arrow / LT Stick : Tourner vers la droite
-- S / Down Arrow / LT Stick : Tourner vers la fauche
-- R  : Redémarrer le niveau
+- D / Right Arrow / RT : Forwards
+- A / Up Arrow / LT Stick : Turn Left
+- S / Down Arrow / LT Stick : Turn Right
+- R / Y / X  : Restart
 - P : Pause
 
-## Condition de victoire
-Aucune c'est un Endless game
+## Victory conditions
+This an Endless game
 
-## Condition de défaite 
-Être tué par un ennemi, tomber dans un trou ou rater plus que 4 clients.
+## Game Over conditions
+Hit a drone, fall into a holes or missed 4 customers
