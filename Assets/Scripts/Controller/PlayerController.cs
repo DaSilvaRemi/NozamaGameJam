@@ -45,10 +45,23 @@ public class PlayerController : CharController, IEventHandler
 
     private void OnGameStatisticsChangedEvent(GameStatisticsChangedEvent e)
     {
+        Debug.Log("Colis non livrée " + e.eNonLivres);
+        Debug.Log("Nb vie du joueur " + m_NbPlayerLife);
         if (e.eNonLivres >= this.m_NbPlayerLife)
         {
             EventManager.Instance.Raise(new LevelGameOverEvent());
         }
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        this.SubscribeEvents();
+    }
+
+    private void OnDestroy()
+    {
+        this.UnsubscribeEvents();
     }
 
     #region MonoBehaviour METHODS

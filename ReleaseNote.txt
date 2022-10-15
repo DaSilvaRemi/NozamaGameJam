@@ -1,12 +1,12 @@
- # Scoutama_UNITY_ESIEE_PROJECT
+Scoutama_UNITY_ESIEE_PROJECT
  
- # Authors
+Authors
  - Rémi Da Silva
  - Florian NOR
  - Thi Quynh-Nhu PHAM
  - Valentin Bailleul
   
-# Game Instructions
+Game Instructions
 
 Contrôles
 
@@ -16,8 +16,8 @@ Contrôles
 - R  : Redémarrer le niveau
 - P : Pause
 
-## Condition de victoire
+Condition de victoire
 Aucune c'est un Endless game
 
-## Condition de défaite 
+Condition de défaite 
 Être tué par un ennemi, tomber dans un trou ou rater plus que 4 clients.

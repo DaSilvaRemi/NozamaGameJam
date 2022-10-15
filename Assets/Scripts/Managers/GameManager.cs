@@ -185,6 +185,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
     {
         if (!GameManager.IsWinning && !GameManager.IsGameOver) return;
 
+        SaveData.Save(new SaveData(this.m_CurrentNbColisLivres, this.m_CurrentNbColisNonLivres));
         this.LoadALevel(GameScene.VICTORYSCENE, false);
     }
 
@@ -193,8 +194,8 @@ public class GameManager : Manager<GameManager>, IEventHandler
      */
     private void GameOver()
     {
+        Debug.Log("Game Over");
         this.SetGameState(GameState.GAMEOVER);
-        SaveData.Save(new SaveData(this.m_CurrentNbColisLivres, this.m_CurrentNbColisNonLivres));
         this.VictoryGame();
     }
 
@@ -204,7 +205,8 @@ public class GameManager : Manager<GameManager>, IEventHandler
      */
     private void NewGame()
     {
-        this.LoadALevel(GameScene.MAINSCENE);
+        this.SetGameState(GameState.PLAY);
+        this.LoadALevel(GameScene.MAINSCENE, false);
     }
 
     /**
@@ -250,7 +252,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
     private void ResetGame()
     {
         this.ResetGameVar();
-        this.LoadALevel(this.m_CurrentScene);
+        this.LoadALevel(this.m_CurrentScene, false);
     }
 
     /**
@@ -268,7 +270,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
      */
     private void LoadALevel(GameScene gameScene)
     {
-        this.LoadALevel(gameScene, true);
+        this.LoadALevel(gameScene, false);
     }
 
     /// <summary>
@@ -304,7 +306,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
     */
     private void Help()
     {
-        this.LoadALevel(GameScene.HELPSCENE);
+        this.LoadALevel(GameScene.HELPSCENE, false);
     }
 
     /**
@@ -312,7 +314,7 @@ public class GameManager : Manager<GameManager>, IEventHandler
     */
     private void CreditGame()
     {
-        this.LoadALevel(GameScene.CREDITSCENE);
+        this.LoadALevel(GameScene.CREDITSCENE, false);
     }
 
     /**
@@ -380,10 +382,8 @@ public class GameManager : Manager<GameManager>, IEventHandler
 
     private void SetNbColisNonLivres(int nbColisNonLivree)
     {
-        // Debug.Log("(avant) this.m_CurrentNbColisNonLivres : " + this.m_CurrentNbColisNonLivres);
         this.m_CurrentNbColisNonLivres = nbColisNonLivree;
         EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eNbColisLivree = this.m_CurrentNbColisLivres, eStock = this.m_CurrentStock, eNonLivres = this.m_CurrentNbColisNonLivres });
-        // Debug.Log("(après) this.m_CurrentNbColisNonLivres : " + this.m_CurrentNbColisNonLivres);
     }
 
     /**

@@ -86,7 +86,6 @@ public class PlatformSpawn : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log("Distance between player and middle position : " + Vector3.Distance(m_PlayerTransform.position, m_MiddlePosition));
         if (this.m_PlayerTransform.position.z >= this.m_MiddlePosition.z)
         {
             for (int i = 0; i < 4; i++)
@@ -96,7 +95,6 @@ public class PlatformSpawn : MonoBehaviour
             }
             RandomSpawn();
         }
-        Debug.Log("m_MiddlePosition Position : " + this.m_MiddlePosition.ToString());
     }
     #endregion
 }
