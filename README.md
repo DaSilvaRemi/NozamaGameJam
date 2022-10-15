@@ -1,4 +1,6 @@
- # Scoutama_UNITY_ESIEE_PROJECT
+ # Scoutama Gamejam ESIEE-ESIPE 2022 Project
+ 
+ A 2.5D platform racing game created during a Gamejam with ESIEE PARIS and ESIPE schools
  
  # Authors
  - Rémi Da Silva
